@@ -448,17 +448,6 @@ val user2 = user1.copy(age = 30)
 println(user2)  // خروجی: User(name=Ali, age=30)
 ```
 
-### ۴. تولید خودکار `hashCode()`
-کلاس‌های داده‌ای دارای پیاده‌سازی خودکار متد `hashCode()` هستند که باعث می‌شود این اشیا بتوانند به عنوان کلید در `HashMap` یا مقدار در `HashSet` استفاده شوند.
-
-### ۵. استفاده از `componentN()` برای استخراج مقادیر
-```kotlin
-val user = User("Ali", 25)
-val (name, age) = user
-println(name)  // خروجی: Ali
-println(age)   // خروجی: 25
-```
-
 ## نکات مهم درباره Data Class
 1. **حداقل یک ویژگی باید داشته باشند**
    ```kotlin
