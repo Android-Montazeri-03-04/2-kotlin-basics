@@ -406,3 +406,75 @@ class Car : Drivable {
 
 ---
 
+
+---
+**جزوه: Data Class در Kotlin**
+
+## مقدمه
+در زبان برنامه‌نویسی Kotlin، یکی از انواع کلاس‌های پرکاربرد، **Data Class** است. این نوع کلاس‌ها برای نگهداری داده طراحی شده‌اند و به صورت خودکار قابلیت‌هایی مانند `equals()`، `hashCode()`، `toString()` و `copy()` را در اختیار برنامه‌نویس قرار می‌دهند.
+
+## تعریف Data Class
+در Kotlin، برای تعریف یک Data Class باید از کلمه‌ی کلیدی `data` در ابتدای تعریف کلاس استفاده کنیم.
+
+### مثال ساده:
+```kotlin
+data class User(val name: String, val age: Int)
+```
+
+در این مثال، کلاسی به نام `User` تعریف شده است که دو ویژگی `name` و `age` دارد. با استفاده از `data`، برخی از توابع پرکاربرد به صورت خودکار ایجاد می‌شوند.
+
+## ویژگی‌های Data Class
+### ۱. تولید خودکار متد `toString()`
+
+بدون نیاز به نوشتن دستی متد `toString()`، اطلاعات کلاس به صورت خوانا نمایش داده می‌شوند:
+```kotlin
+val user = User("Ali", 25)
+println(user)  // خروجی: User(name=Ali, age=25)
+```
+
+### ۲. مقایسه اشیا با `equals()`
+در Data Class، دو شیء برابر محسوب می‌شوند اگر مقادیر آن‌ها برابر باشد:
+```kotlin
+val user1 = User("Ali", 25)
+val user2 = User("Ali", 25)
+println(user1 == user2)  // خروجی: true
+```
+
+### ۳. متد `copy()` برای ایجاد نسخه جدید از شیء
+data class به طور خودکار متدی به نام `copy()` دارد که امکان ایجاد یک نمونه جدید از شیء را فراهم می‌کند:
+```kotlin
+val user1 = User("Ali", 25)
+val user2 = user1.copy(age = 30)
+println(user2)  // خروجی: User(name=Ali, age=30)
+```
+
+### ۴. تولید خودکار `hashCode()`
+کلاس‌های داده‌ای دارای پیاده‌سازی خودکار متد `hashCode()` هستند که باعث می‌شود این اشیا بتوانند به عنوان کلید در `HashMap` یا مقدار در `HashSet` استفاده شوند.
+
+### ۵. استفاده از `componentN()` برای استخراج مقادیر
+```kotlin
+val user = User("Ali", 25)
+val (name, age) = user
+println(name)  // خروجی: Ali
+println(age)   // خروجی: 25
+```
+
+## نکات مهم درباره Data Class
+1. **حداقل یک ویژگی باید داشته باشند**
+   ```kotlin
+   data class Empty // خطا: کلاس داده‌ای حداقل یک ویژگی نیاز دارد
+   ```
+2. **ویژگی‌ها باید در primary constructor تعریف شوند**
+   ```kotlin
+   data class Person(var name: String) // صحیح
+   class Person(var name: String) // کلاس معمولی
+   ```
+3. **کلاس نمی‌تواند `abstract`، `open`، `sealed` یا `inner` باشد**
+   ```kotlin
+   abstract data class Animal(val name: String) // خطا
+   ```
+
+## نتیجه‌گیری
+Data Class در Kotlin یکی از ویژگی‌های قدرتمند است که کدنویسی را ساده‌تر و خواناتر می‌کند. این کلاس‌ها برای نگهداری داده‌ها استفاده می‌شوند و قابلیت‌های مفیدی مانند `copy()`، `toString()`، `equals()` و `hashCode()` را به صورت خودکار در اختیار برنامه‌نویس قرار می‌دهند. با درک صحیح این کلاس‌ها، می‌توانیم کدهای بهینه‌تر و خواناتری بنویسیم.
+
+---
