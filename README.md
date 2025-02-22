@@ -185,17 +185,32 @@ printResult(::multiply)  // خروجی: Result is: 15
 
 در اینجا، تابع `printResult` یک تابع دیگر به نام `operation` می‌گیرد که دو عدد صحیح را می‌پذیرد و یک عدد صحیح باز می‌گرداند. سپس این تابع را روی مقادیر `5` و `3` فراخوانی می‌کند.
 
-#### مثال 2: تابعی که تابعی را باز می‌گرداند
+#### مثال 2: شبیه سازی درخواست سرور
 ```kotlin
-fun getMultiplier(factor: Int): (Int) -> Int {
-    return { number -> number * factor }
+fun fetchUserData(
+    userId: Int,
+    onSuccess: (String) -> Unit,
+    onError: (String) -> Unit
+) {
+    // Simulating an API request (this would normally be an actual network call)
+    val isSuccess = userId % 2 == 0  // Simulating success for even user IDs
+
+    if (isSuccess) {
+        onSuccess("User data for ID $userId")
+    } else {
+        onError("Error: User not found")
+    }
 }
 
-val multiplyBy2 = getMultiplier(2)
-println(multiplyBy2(5))  // خروجی: 10
+fun main() {
+    val userId = 3
 
-val multiplyBy3 = getMultiplier(3)
-println(multiplyBy3(5))  // خروجی: 15
+    fetchUserData(
+        userId,
+        onSuccess = { data -> println("Success: $data") },
+        onError = { error -> println(error) }
+    )
+}
 ```
 
 در اینجا، تابع `getMultiplier` یک تابع جدید بازمی‌گرداند که یک عدد را با فاکتور مشخص شده ضرب می‌کند.
