@@ -472,7 +472,6 @@ Data Class در Kotlin یکی از ویژگی‌های قدرتمند است ک�
 در این مثال، از `MutableList` برای ذخیره لیستی از کاربران استفاده می‌کنیم و عملیات **افزودن، حذف و نمایش کاربران** را انجام می‌دهیم.  
 
 ```kotlin
-// مدل کاربر
 data class User(
     val id: Int,
     val name: String,
@@ -480,23 +479,19 @@ data class User(
 )
 
 fun main() {
-    // ایجاد یک لیست قابل تغییر از کاربران
     val users = mutableListOf(
         User(1, "علی ", "ali.111@example.com"),
         User(2, "سعید ", "saeid.222@example.com")
     )
 
-    // نمایش لیست اولیه کاربران
     println("لیست اولیه کاربران:")
     users.forEach { println(it) }
 
-    // اضافه کردن یک کاربر جدید
     val newUser = User(3, "محمد ", "mohammad@example.com")
     users.add(newUser)
     println("\nپس از افزودن کاربر جدید:")
     users.forEach { println(it) }
 
-    // حذف یک کاربر بر اساس id
     val userIdToRemove = 1
     users.removeIf { it.id == userIdToRemove }
     println("\nپس از حذف کاربر با شناسه $userIdToRemove:")
