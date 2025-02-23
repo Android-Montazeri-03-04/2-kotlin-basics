@@ -118,7 +118,11 @@ fun main() {
 fun main() {
     val words = listOf("کتاب", "پیشرفت", "اندروید", "برنامه")
     val randomWord = words.random()  // انتخاب کلمه تصادفی
-    val hiddenWord = "_".repeat(randomWord.length).toMutableList()  // کلمه مخفی
+    val hiddenWord = mutableListOf<Char>()
+    randomWord.forEach {
+        hiddenWord.add('_')
+    }
+
 
     val maxGuesses = 10  // تعداد حدس‌های مجاز
     var remainingGuesses = maxGuesses
